@@ -679,11 +679,14 @@
             <input class="form-input" type="url" id="field-linkedin" name="linkedin" placeholder="LinkedIn URL (optional)">
           </div>
           <div class="form-row">
-            <input class="form-input" type="text" id="field-company" name="company" placeholder="Company">
-            <input class="form-input" type="text" id="field-position" name="position" placeholder="Position">
+            <input class="form-input" type="text" id="field-company" name="company" required placeholder="Company">
+            <input class="form-input" type="text" id="field-position" name="position" required placeholder="Position">
           </div>
           <div class="form-group">
             <input class="form-input" type="text" id="field-twitter" name="twitter" placeholder="@twitter (optional)">
+          </div>
+          <div class="form-group">
+            <textarea class="form-input" id="field-motivation" name="motivation" rows="3" placeholder="Tell us more about yourself and your motivation" style="resize:vertical;border-radius:1rem;"></textarea>
           </div>
           <div class="form-consent">
             <input type="checkbox" id="field-consent" name="consent">
@@ -847,8 +850,9 @@
         var company = document.getElementById('field-company').value.trim();
         var position = document.getElementById('field-position').value.trim();
         var twitter = document.getElementById('field-twitter').value.trim();
+        var motivation = document.getElementById('field-motivation').value.trim();
 
-        if (!firstname || !lastname || !email) return;
+        if (!firstname || !lastname || !email || !company || !position) return;
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
@@ -859,7 +863,8 @@
           linkedin: linkedin,
           company: company,
           position: position,
-          twitter: twitter
+          twitter: twitter,
+          motivation: motivation
         };
 
         fetch(APPS_SCRIPT_URL, {

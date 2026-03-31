@@ -11,7 +11,7 @@ function doPost(e) {
 
     // Add headers if the sheet is empty
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Timestamp', 'Name', 'Email', 'LinkedIn', 'Company', 'Position', 'Twitter']);
+      sheet.appendRow(['Timestamp', 'Name', 'Email', 'LinkedIn', 'Company', 'Position', 'Twitter', 'Motivation']);
     }
 
     sheet.appendRow([
@@ -21,7 +21,8 @@ function doPost(e) {
       data.linkedin || '',
       data.company || '',
       data.position || '',
-      data.twitter || ''
+      data.twitter || '',
+      data.motivation || ''
     ]);
 
     return ContentService
