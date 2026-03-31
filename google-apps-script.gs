@@ -1,18 +1,12 @@
-/**
- * Genesis Club — Waitlist Form Backend
- * Deploy as Google Apps Script Web App
- * Receives POST requests from the landing page form
- */
-
 function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var data = JSON.parse(e.postData.contents);
 
-    // Add headers if the sheet is empty
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['Timestamp', 'Name', 'Email', 'LinkedIn', 'Company', 'Position', 'Twitter', 'Motivation']);
     }
+
+    var data = e.parameter;
 
     sheet.appendRow([
       new Date().toISOString(),

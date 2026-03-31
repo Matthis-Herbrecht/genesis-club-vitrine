@@ -834,7 +834,7 @@
     (function () {
       'use strict';
 
-      var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3-tu9lAAR-d1qJhP5X7OVkaTbj9zKAPeCc8Z0yOHVzW5dBvgVUDTUwSOaFpfBEaxf/exec';
+      var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwl7LpRzcffK0hkzzQQtmM88WpO_EBm_xrS7T4f4Q-HRRpoeLS9nH1MkGdDAj_wIq8-/exec';
 
       var form = document.getElementById('application-form');
       var submitBtn = document.getElementById('btn-submit');
@@ -867,11 +867,19 @@
           motivation: motivation
         };
 
+        var formData = new FormData();
+        formData.append('name', payload.name);
+        formData.append('email', payload.email);
+        formData.append('linkedin', payload.linkedin);
+        formData.append('company', payload.company);
+        formData.append('position', payload.position);
+        formData.append('twitter', payload.twitter);
+        formData.append('motivation', payload.motivation);
+
         fetch(APPS_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: formData
         })
         .then(function () { showConfirmation(); })
         .catch(function () { showConfirmation(); });
